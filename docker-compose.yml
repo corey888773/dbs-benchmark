@@ -1,0 +1,55 @@
+services:
+  mongodb:
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - .dev/data/mongodb:/data/db
+    container_name: benchmark-mongodb
+
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: benchmark
+      MYSQL_USER: benchmark
+      MYSQL_PASSWORD: benchmark
+    ports:
+      - "3306:3306"
+    volumes:
+      - .dev/data/mariadb:/var/lib/mysql
+    container_name: benchmark-mariadb
+
+  postgresql:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: benchmark
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: benchmark
+    ports:
+      - "5432:5432"
+    volumes:
+      - .dev/data/postgresql:/var/lib/postgresql/data
+    container_name: benchmark-postgresql
+
+  cassandra:
+    image: cassandra:latest
+    restart: always
+    ports:
+      - "9042:9042"
+      - "9160:9160"
+    volumes:
+      - .dev/data/cassandra:/var/lib/cassandra
+    container_name: benchmark-cassandra
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - .dev/data/redis:/data
+    container_name: benchmark-redis
