@@ -15,7 +15,15 @@ Benchmark of different databases using Python and Docker Compose.
 
 ## Prerequisites 
 - Docker
-- Conda/Venv with python==3.10.12
+- Conda(recommended)/venv with python==3.10.12
+
+## Installation
+1. activate your conda/venv
+2. check what is your path for pip. for example on unix run `which pip` - it should be located in the folder associated with your conda env
+3. install required dependencies
+```shell
+pip install -r requirements.txt 
+```
 
 ## Running local stack
 ```shell
