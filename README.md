@@ -46,3 +46,7 @@ docker compose -f docker-compose.yml down --volumes --remove-orphans && rm -rf .
 # full clean
 docker compose -f docker-compose.yml down --volumes --remove-orphans --rmi all
 ```
+
+## Data Generator
+
+For detailed instructions on how to use the data generator, see [README.generator.md](README.generator.md).
