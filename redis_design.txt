@@ -1,0 +1,24 @@
+# Optimized Redis Design (Using Hashes, Sets, and Lists)
+
+# Students
+HMSET student:{id} first_name John last_name Doe birth_date 2005-06-15 created_at 2023-09-01T12:00:00Z
+
+# Teachers
+HMSET teacher:{id} first_name Alice last_name Smith subject Mathematics hire_date 2020-01-15 created_at 2023-09-01T12:00:00Z
+
+# Subjects
+HMSET subject:{id} name Physics description "Study of matter and energy" created_at 2023-09-01T12:00:00Z
+
+# Classes (store multiple teacher IDs as a set)
+HMSET class:{id} name "Class A" created_at 2023-09-01T12:00:00Z
+SADD class:{id}:teachers {teacher_id1} {teacher_id2}
+
+# Enrollments (Sets)
+SADD class:{class_id}:students {student_id}
+SADD student:{student_id}:classes {class_id}
+
+# Schedules (Hash per class+day or sorted set by time)
+HSET schedule:{class_id}:{day_of_week} {subject_id} "09:00-10:00"
+
+# Grades
+LPUSH grades:{student_id}:{subject_id} "{grade}|2023-09-01T12:00:00Z"

@@ -1,0 +1,62 @@
+# Optimized NoSQL Design (MongoDB-like Document Model)
+
+## Collections and Example Document Structures:
+
+### 1. students
+{
+  _id: ObjectId,
+  first_name: "John",
+  last_name: "Doe",
+  birth_date: ISODate("2005-06-15"),
+  created_at: ISODate("2023-09-01T12:00:00Z")
+}
+
+### 2. teachers
+{
+  _id: ObjectId,
+  first_name: "Alice",
+  last_name: "Smith",
+  subject: "Mathematics",
+  hire_date: ISODate("2020-01-15"),
+  created_at: ISODate("2023-09-01T12:00:00Z")
+}
+
+### 3. subjects
+{
+  _id: ObjectId,
+  name: "Physics",
+  description: "Study of matter and energy",
+  created_at: ISODate("2023-09-01T12:00:00Z")
+}
+
+### 4. classes
+{
+  _id: ObjectId,
+  name: "Class A",
+  teacher_ids: [ObjectId("..."), ObjectId("...")],
+  created_at: ISODate("2023-09-01T12:00:00Z")
+}
+
+### 5. enrollments
+{
+  student_id: ObjectId("..."),
+  class_id: ObjectId("..."),
+  enrolled_at: ISODate("2023-09-01T12:00:00Z")
+}
+
+### 6. schedules
+{
+  class_id: ObjectId("..."),
+  subject_id: ObjectId("..."),
+  day_of_week: "Monday",
+  time_start: "09:00",
+  time_end: "10:00"
+}
+
+### 7. grades
+{
+  student_id: ObjectId("..."),
+  subject_id: ObjectId("..."),
+  grade: 95,
+  created_at: ISODate("2023-09-01T12:00:00Z")
+}
