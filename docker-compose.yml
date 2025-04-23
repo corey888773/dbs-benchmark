@@ -21,6 +21,7 @@ services:
     volumes:
       - .dev/data/mariadb:/var/lib/mysql
     container_name: benchmark-mariadb
+    command: --local-infile=1
 
   postgresql:
     image: postgres:latest

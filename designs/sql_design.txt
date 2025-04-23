@@ -1,0 +1,59 @@
+SQL Database Design (Relational)
+
+The given ERD (Entity-Relationship Diagram) illustrates a relational model for a school or educational institution. Here's a description of how this schema would be implemented in a SQL database using best practices.
+
+1. Table: students
+- id (PK, integer, auto-increment): Unique identifier for each student
+- first_name (varchar): Student's first name
+- last_name (varchar): Student's last name
+- birth_date (date): Date of birth
+- created_at (timestamp): Timestamp when the record was created
+
+2. Table: teachers
+- id (PK, integer, auto-increment): Unique identifier for each teacher
+- first_name (varchar): Teacher's first name
+- last_name (varchar): Teacher's last name
+- subject (varchar): Area of teaching
+- hire_date (date): Date the teacher was hired
+- created_at (timestamp): Timestamp when the record was created
+
+3. Table: classes
+- id (PK, integer, auto-increment): Unique identifier for each class
+- name (varchar): Class name or title
+- teacher_id (FK to teachers.id): Teacher assigned to the class
+- created_at (timestamp): Timestamp when the class was created
+
+4. Table: enrollments
+- student_id (FK to students.id): Student enrolled
+- class_id (FK to classes.id): Class enrolled into
+- enrolled_at (timestamp): Timestamp of enrollment
+
+Primary key is composite: (student_id, class_id)
+
+5. Table: grades
+- id (PK, integer, auto-increment): Grade record ID
+- student_id (FK to students.id): Student receiving the grade
+- subject_id (FK to subjects.id): Subject of the grade
+- grade (integer): Grade score
+- created_at (timestamp): Timestamp of grade assignment
+
+6. Table: subjects
+- id (PK, integer, auto-increment): Subject ID
+- name (varchar): Subject name
+- description (text): Subject description
+- created_at (timestamp): Timestamp when the subject was created
+
+7. Table: schedules
+- id (PK, integer, auto-increment): Schedule entry ID
+- class_id (FK to classes.id): Related class
+- subject_id (FK to subjects.id): Subject taught
+- day_of_week (varchar): Day of the week (e.g., Monday)
+- time_start (time): Start time
+- time_end (time): End time
+
+Best Practices Applied:
+- Use of foreign keys for data integrity
+- Timestamps to track record creation
+- Normalization to third normal form (3NF)
+- Indexing primary and foreign keys for performance
+- Composite keys where appropriate (e.g., enrollments)

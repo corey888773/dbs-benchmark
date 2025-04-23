@@ -1,0 +1,56 @@
+In-Memory DB Design (Redis)
+
+For Redis, data structures such as hashes, sets, sorted sets, and lists are used for modeling. Embedding is favored for fast access. Here’s how to represent the school schema using Redis:
+
+1. Students (HASH)
+Key: student:{id}
+Fields:
+- first_name
+- last_name
+- birth_date
+
+2. Student Enrollments (SET)
+Key: student:{id}:classes
+Value: Set of class IDs
+
+3. Student Grades (HASH / ZSET)
+Key: student:{id}:grades
+Type: HASH or Sorted Set (subject_id as key or score)
+Fields: subject_id -> grade
+
+4. Teachers (HASH)
+Key: teacher:{id}
+Fields:
+- first_name
+- last_name
+- subject
+- hire_date
+
+5. Classes (HASH)
+Key: class:{id}
+Fields:
+- name
+- teacher_id
+
+6. Class Schedule (LIST or HASH)
+Key: class:{id}:schedule
+Type: LIST or multiple HASH keys
+Example:
+Key: class:{id}:schedule:{day}
+Fields:
+- subject_id
+- time_start
+- time_end
+
+7. Subjects (HASH)
+Key: subject:{id}
+Fields:
+- name
+- description
+
+Best Practices Applied:
+- Flat key structure for performance.
+- Use of SET and ZSET to model 1:N and sorted relations (e.g., student grades).
+- Embedding where low cardinality and performance matters (e.g., class schedule in a hash or list).
+- TTLs can be applied if records are temporary.
+- Key naming conventions ensure namespace clarity.

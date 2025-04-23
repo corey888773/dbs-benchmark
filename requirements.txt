@@ -5,3 +5,6 @@ redis>=5.0.1
 mysql-connector-python>=8.3.0
 pyyaml>=6.0.1O
 faker>=37.1.0
+pandas
+sqlalchemy
+pymysql
