@@ -36,10 +36,7 @@ When modeling this schema in a NoSQL database like MongoDB, we aim to denormaliz
 {
   "_id": ObjectId,
   "name": "Algebra I",
-  "teacher": {
-    "teacher_id": ObjectId,
-    "name": "Anna Smith"
-  },
+  "teacher_id: ObjectId
   "schedule": [
     {
       "subject_id": ObjectId,
