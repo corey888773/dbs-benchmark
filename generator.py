@@ -22,7 +22,8 @@ def generate_teachers_batch(start_id, batch_size, num_teachers):
     teachers = []
     end_id = min(start_id + batch_size, num_teachers + 1)
     for i in range(start_id, end_id):
-        teachers.append([i, fake.first_name(), fake.last_name(), fake.job(), fake.date_this_decade(), fake.date_time_this_decade()])
+        job = fake.job().replace(',', ' ').replace('\n', ' ').replace('\r', ' ').replace('\t', ' ').strip()
+        teachers.append([i, fake.first_name(), fake.last_name(), job, fake.date_this_decade(), fake.date_time_this_decade()])
     return teachers
 
 def generate_classes_batch(start_id, batch_size, teachers, num_classes):
@@ -36,7 +37,9 @@ def generate_subjects_batch(start_id, batch_size, num_subjects):
     subjects = []
     end_id = min(start_id + batch_size, num_subjects + 1)
     for i in range(start_id, end_id):
-        subjects.append([i, fake.word().capitalize(), fake.text(), fake.date_time_this_decade()])
+        # replace newline with space
+        subject_description = fake.text().replace('\n', ' ').replace('\r', ' ').replace('\t', ' ').replace(',', ' ').strip()
+        subjects.append([i, fake.word().capitalize(), subject_description, fake.date_time_this_decade()])
     return subjects
 
 def generate_grades_batch(start_id, batch_size, students, subjects, num_grades):
