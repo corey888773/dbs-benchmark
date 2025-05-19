@@ -150,12 +150,12 @@ def generate_school_data(
     """
     # Entity counts based on proportions
     num_students = 10 * scale
-    num_teachers = 1 * scale
-    num_classes = 2 * scale
-    num_subjects = 1 * scale
+    num_teachers = 5 * scale
+    num_classes = 5 * scale
+    num_subjects = 10 * scale
     num_grades = 30 * scale
     num_enrollments = 20 * scale
-    num_schedules = 5 * scale
+    num_schedules = 20 * scale
     
     # Generate reference data
     teachers = []
